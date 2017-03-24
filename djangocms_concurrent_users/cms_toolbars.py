@@ -10,7 +10,7 @@ from django.template import RequestContext
 
 
 class ConcurrencyButton(LinkItem):
-    template = 'djangocms_concurrent_users/templates/djangocms_concurrent_users/concurrency_button.html'
+    template = 'djangocms_concurrent_users/concurrency_button.html'
 
     def __init__(self, request):
         self.request = request
