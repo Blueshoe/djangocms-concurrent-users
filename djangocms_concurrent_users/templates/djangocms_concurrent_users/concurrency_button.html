@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+{# This button is supposed to display activity in the next versions of this plugin #}
+
+{#<div class="cms-toolbar-item cms-toolbar-item-buttons">#}
+{#    <a href="#" class="cms-btn cms-btn-disabled js-concurrentUserMenu fa fa-group">{{ name }}</a>#}
+{#</div>#}
+
+<script>
+    var page_indicator_url = '{% url 'concurrent_users:update-page-indicator' %}';
+    var csrf = '{{ csrf_token }}';
+    var page = '{{ request.current_page.pk }}';
+</script>
+<script src="{% static 'js/concurrent_users.js' %}"></script>
+<script>
+
+    setInterval(ConcurrentUsers.updateStatus, {{ check_time }});
+</script>
+
+<link rel="stylesheet" href="{% static 'css/concurrent_users.css' %}">
+

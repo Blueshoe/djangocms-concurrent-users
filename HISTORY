@@ -1,0 +1,9 @@
+CHANGELOG
+=========
+
+0.0.2 (2017-03-24)
+----------------
+
+* initial project setup
+* client-side page blocking
+* server-side page indicator for storing the simple information which user edits a page

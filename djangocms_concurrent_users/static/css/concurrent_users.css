@@ -1,0 +1,13 @@
+.concurrentWarning {
+    font-family: Helvetica, Arial, sans-serif !important;
+    text-align:center !important;
+    line-height: 50px !important;
+    position: fixed !important;
+    color: white !important;
+    font-size: large !important;
+    top: 100px !important;
+    width: 100% !important;
+    height: 50px !important;
+    z-index: 10001 !important;
+    background-color: rgba(255,0,0,0.9) !important;
+}
