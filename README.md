@@ -1,6 +1,7 @@
-==========================
-djangocms-concurrent-users
-==========================
+==========================  
+djangocms-concurrent-users  
+==========================  
+
 A Django-CMS plugin for blocking pages which are edited by another user.
 This provides a simple mechanism to prevent two users working on the same page. Due to the
 fact, that only the version of the last user hitting the save button is stored, data loss is very likely.
@@ -12,8 +13,9 @@ The check if performed by polling the server with an specified interval. Once th
 is released and the next user will be able to make changes.
 
 
+********
 Features
-========
+********
 
 * blocks a page with an overlay in case another user is already working on it
 * reloads the page once it is released, in order to fetch the latest changes
