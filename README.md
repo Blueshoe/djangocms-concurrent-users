@@ -1,4 +1,3 @@
-==========================  
 djangocms-concurrent-users  
 ==========================  
 
@@ -13,9 +12,9 @@ The check if performed by polling the server with an specified interval. Once th
 is released and the next user will be able to make changes.
 
 
-********
+
 Features
-********
+========
 
 * blocks a page with an overlay in case another user is already working on it
 * reloads the page once it is released, in order to fetch the latest changes
