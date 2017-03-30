@@ -35,7 +35,7 @@ To get started using ``djangocms-concurrent-users``:
 
     INSTALLED_APPS = (
         ...
-        'djangocms-concurrent-users',
+        'djangocms_concurrent_users',
         ...
     )
 
