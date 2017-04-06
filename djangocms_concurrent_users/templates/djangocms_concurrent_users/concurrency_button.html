@@ -7,15 +7,15 @@
 {#</div>#}
 
 <script>
-    var page_indicator_url = '{% url 'concurrent_users:update-page-indicator' %}';
-    var csrf = '{{ csrf_token }}';
-    var page = '{{ request.current_page.pk }}';
+    var ConcurrentUsersSettings = {
+        page_indicator_url: '{% url 'concurrent_users:update-page-indicator' %}',
+        csrf: '{{ csrf_token }}',
+        page: '{{ request.current_page.pk }}',
+        check_time: {{ check_time }}
+    };
 </script>
-<script src="{% static 'js/concurrent_users.js' %}"></script>
-<script>
 
-    setInterval(ConcurrentUsers.updateStatus, {{ check_time }});
-</script>
+<script src="{% static 'js/concurrent_users.js' %}"></script>
 
 <link rel="stylesheet" href="{% static 'css/concurrent_users.css' %}">
 
