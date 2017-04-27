@@ -4,8 +4,9 @@ var ConcurrentUsers = {
         var ele = $('.js-concurrentExclude');
         $('.js-preventClickOverlay').css({
             position: 'fixed',
-            top: ele.offset().top + 'px',
-            left: ele.offset().left + 'px',
+            top: 0,
+            // top: ele.offset().top + 'px',
+            // left: ele.offset().left + 'px',
             width: '100%',
             height: '100%',
             backgroundColor: 'rgba(0,0,0,0.5)',
@@ -14,7 +15,20 @@ var ConcurrentUsers = {
     },
     hideOverlay: function hideOverlay() {
         $('.js-preventClickOverlay').hide();
-        $('.js-concurrentWarning').remove();
+        $('.js-concurrentWarning').hide();
+    },
+    showMessage: function(data) {
+        // var message_bar = '<div class="js-concurrentWarning concurrentWarning">' + data.message + '</div>'
+        // $('body, .cms-structure').append(message_bar);
+        $('.js-concurrentWarningMessage').text(data.message);
+        $('.js-concurrentWarningButtonPublishedPage').attr('href', (data.buttons.published_page.link));
+        $('.js-concurrentWarningButtonPublishedPage').text(data.buttons.published_page.link_text);
+        $('.js-concurrentWarningButtonBack').attr('href', (data.buttons.back.link));
+        $('.js-concurrentWarningButtonBack').text(data.buttons.back.link_text);
+        $('.js-concurrentWarning').show();
+        if ($('.js-concurrentWarning').length < 2) {
+            $('body, .cms-structure').append($('.js-concurrentWarning'));
+        }
     },
     updateIndicator: function updateIndicator() {
         $.ajax({
@@ -44,14 +58,7 @@ var ConcurrentUsers = {
                     }
                     // display the overlay
                     ConcurrentUsers.showOverlay();
-                    // display the message coming from the server
-                    if (!$('.js-concurrentWarning').length) {
-                        message_bar = '<div class="js-concurrentWarning concurrentWarning">' + data.message + '</div>'
-                        $('body, .cms-structure').append(message_bar);
-                    }
-                    else{
-                        $('.js-concurrentWarning').html(data.message);
-                    }
+                    ConcurrentUsers.showMessage(data);
                     ConcurrentUsers.wasBlocked = true;
                 }
                 else {
@@ -70,9 +77,9 @@ var ConcurrentUsers = {
 
                     }
                 }
-            },
+            }
         });
-    },
+    }
 };
 
 document.addEventListener('DOMContentLoaded', ConcurrentUsers.updateStatus, false);

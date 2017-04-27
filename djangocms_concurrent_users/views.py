@@ -18,7 +18,6 @@ from djangocms_concurrent_users.models import PageIndicator
 
 
 class PageIndicatorStatusView(View):
-
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         self.now = timezone.now()
@@ -32,7 +31,7 @@ class PageIndicatorStatusView(View):
         # release page for all users which did not update during the last timeframe
         PageIndicator.objects.filter(edited_on__lte=self.time_past, page=_page).delete()
 
-        page_indicators = PageIndicator.objects.filter(edited_on__gte=self.time_past, page=_page)\
+        page_indicators = PageIndicator.objects.filter(edited_on__gte=self.time_past, page=_page) \
             .exclude(editor=request.user)
 
         response = {}
@@ -43,10 +42,18 @@ class PageIndicatorStatusView(View):
             # default behavior for concurrent users is blocking
             response['block_editing'] = getattr(settings, 'CONCURRENT_BLOCK_EDITING', BLOCK_EDITING_DEFAULT)
 
-            response['message'] = _(u'Unfortunately you cannot edit this page at the moment: '
-                                    u'user {user} is blocking it since {time}').format(
-                    user=editing_user.editor,
-                    time=_date(editing_user.started_editing, 'D, d. b, H:i'))
+            response['message'] = _(u'The page is currently edited by {user} since {time}.') \
+                .format(user=editing_user.editor, time=_date(editing_user.started_editing, 'D, d. b, H:i'))
+            response['buttons'] = {
+                'published_page': {
+                    'link': '{url}?edit_off'.format(url=_page.get_absolute_url()),
+                    'link_text': _('View Published Page'),
+                },
+                'back': {
+                    'link': '',
+                    'link_text': _('Back'),
+                }
+            }
         else:
             response['conflict'] = False
 
