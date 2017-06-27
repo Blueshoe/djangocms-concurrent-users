@@ -50,7 +50,6 @@ class PageIndicatorStatusView(View):
                     'link_text': _('View Published Page'),
                 },
                 'back': {
-                    'link': '',
                     'link_text': _('Back'),
                 }
             }

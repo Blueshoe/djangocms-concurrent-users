@@ -17,17 +17,17 @@ var ConcurrentUsers = {
         $('.js-preventClickOverlay').hide();
         $('.js-concurrentWarning').hide();
     },
-    showMessage: function(data) {
+    showMessage: function (data) {
         // var message_bar = '<div class="js-concurrentWarning concurrentWarning">' + data.message + '</div>'
         // $('body, .cms-structure').append(message_bar);
         $('.js-concurrentWarningMessage').text(data.message);
-        $('.js-concurrentWarningButtonPublishedPage').attr('href', (data.buttons.published_page.link));
-        $('.js-concurrentWarningButtonPublishedPage').text(data.buttons.published_page.link_text);
-        $('.js-concurrentWarningButtonBack').attr('href', (data.buttons.back.link));
+        $('.js-concurrentWarningButtonPublishedPage').attr('href', (data.buttons.published_page.link))
+                                                     .text(data.buttons.published_page.link_text);
         $('.js-concurrentWarningButtonBack').text(data.buttons.back.link_text);
-        $('.js-concurrentWarning').show();
-        if ($('.js-concurrentWarning').length < 2) {
-            $('body, .cms-structure').append($('.js-concurrentWarning'));
+        var $concurrentWarning = $('.js-concurrentWarning');
+        $concurrentWarning.show();
+        if ($concurrentWarning.length < 2) {
+            $('body, .cms-structure').append($concurrentWarning);
         }
     },
     updateIndicator: function updateIndicator() {
@@ -66,11 +66,11 @@ var ConcurrentUsers = {
                         ConcurrentUsers.updateIndicator();
                     }
                     else {
-                        if(ConcurrentUsers.wasBlocked){
+                        if (ConcurrentUsers.wasBlocked) {
                             // it this user was blocked, we need to reload the changed content
                             location.reload();
                         }
-                        else{
+                        else {
                             ConcurrentUsers.updateIndicator();
                             ConcurrentUsers.hideOverlay();
                         }
