@@ -1,12 +1,9 @@
 var ConcurrentUsers = {
     wasBlocked: false,
     showOverlay: function setOverlay() {
-        var ele = $('.js-concurrentExclude');
         $('.js-preventClickOverlay').css({
             position: 'fixed',
             top: 0,
-            // top: ele.offset().top + 'px',
-            // left: ele.offset().left + 'px',
             width: '100%',
             height: '100%',
             backgroundColor: 'rgba(0,0,0,0.5)',
@@ -18,8 +15,6 @@ var ConcurrentUsers = {
         $('.js-concurrentWarning').hide();
     },
     showMessage: function (data) {
-        // var message_bar = '<div class="js-concurrentWarning concurrentWarning">' + data.message + '</div>'
-        // $('body, .cms-structure').append(message_bar);
         $('.js-concurrentWarningMessage').text(data.message);
         $('.js-concurrentWarningButtonPublishedPage').attr('href', (data.buttons.published_page.link))
                                                      .text(data.buttons.published_page.link_text);
