@@ -18,7 +18,7 @@ class ConcurrentUsersConfig(AppConfig):
         polling_interval = getattr(settings, 'CONCURRENT_POLLING_INTERVAL', POLLING_INTERVAL_DEFAULT)
 
         if blocking_offset <= polling_interval:
-            raise ImproperlyConfigured('CONCURRENT_BLOCKING_OFFSET is shorter than CONCURRENT_POLLING_INTERVAL')
+            raise ImproperlyConfigured('CONCURRENT_BLOCKING_OFFSET is not longer than CONCURRENT_POLLING_INTERVAL')
 
 
 

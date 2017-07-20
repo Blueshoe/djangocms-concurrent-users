@@ -48,6 +48,6 @@ To get started using ``djangocms-concurrent-users``:
 Configuration
 =============
 
- * ``CONCURRENT_BLOCKING_OFFSET``: Time to wait until the page is release just after the user left; is ``20`` by default; Must not be shorter than ``CONCURRENT_POLLING_INTERVAL``
+ * ``CONCURRENT_BLOCKING_OFFSET``: Time to wait until the page is release just after the user left; is ``20`` by default; Must be larger than ``CONCURRENT_POLLING_INTERVAL``
  * ``CONCURRENT_POLLING_INTERVAL``: Interval for the clients to poll the server; is ``20`` by default; Must not be greater than ``CONCURRENT_BLOCKING_OFFSET``
  * ``CONCURRENT_BLOCK_EDITING``: Specifies if the blocking actually happens; is ``True`` by default;
